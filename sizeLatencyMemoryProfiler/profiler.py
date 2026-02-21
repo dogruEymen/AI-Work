@@ -86,8 +86,8 @@ def measure_gpu_memory(model, x):
         y = model(x)
         
     torch.cuda.synchronize()
-    current = torch.cuda.memory_allocated()
-    peak    = torch.cuda.max_memory_allocated()
+    current = torch.cuda.memory_allocated() / (1024 ** 2)
+    peak    = torch.cuda.max_memory_allocated() / (1024 ** 2)
     return current, peak
 
 mem1 = measure_gpu_memory(model, x1)
